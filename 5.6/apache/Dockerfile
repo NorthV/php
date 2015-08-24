@@ -66,8 +66,10 @@ RUN buildDeps=" \
 		--with-readline \
 		--with-recode \
 		--with-zlib \
+		--enable-phpdbg \
 	&& make -j"$(nproc)" \
 	&& make install \
+	&& make install-phpdbg \
 	&& { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
 	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
 	&& make clean
